@@ -1,85 +1,152 @@
-﻿## Prompt 1: Core Interaction System Kurulumu
+﻿# LLM Kullanım Dokümantasyonu
+
+> Bu dosya Ludu Arts Unity Developer Intern Case çalışması boyunca yapılan AI destekli geliştirmeleri belgeler.
+
+## Özet
+
+| Bilgi | Değer |
+|-------|-------|
+| Geliştirici | Ekrem Taha Ünlü |
+| Toplam Prompt Sayısı | ~12 (Ana başlıklar altında gruplandı) |
+| Kullanılan Araçlar | ChatGPT-4o (Gemini Model) |
+| En Çok Yardım Alınan Konular | Mimari Tasarım, C# Standartları (Naming/Coding Conventions), Debugging, Refactoring |
+| Tahmini Kazanılan Süre | 4-5 Saat |
+
+---
+
+## Prompt 1: Proje Kurulumu ve Core Sistem
 
 **Araç:** ChatGPT-4o
-**Tarih/Saat:** 2024-01-30 15:00
+**Tarih:** 2026-01-30
 
-**Prompt:**
-> Ludu Arts coding convention ve naming convention dosyalarını paylaşıyorum. Bu standartlara (m_ prefix, region kullanımı, XML documentation vb.) tam uyumlu olacak şekilde; modüler bir IInteractable interface'i ve Raycast tabanlı bir InteractionDetector scripti yazar mısın?
+**Prompt (Özet):**
+> Ludu Arts coding convention ve naming convention dokümanlarını paylaşıyorum. Bu standartlara (m_ prefix, region kullanımı, XML documentation vb.) tam uyumlu olacak şekilde; modüler bir IInteractable interface'i ve Raycast tabanlı bir InteractionDetector scripti oluştur.
 
 **Alınan Cevap (Özet):**
-> Namespace yapısı ayarlanmış, region'lara bölünmüş ve serialized field'ları m_ prefix ile başlayan InteractionDetector sınıfı ve IInteractable arayüzü sağlandı. Raycast optimizasyonu için interval kontrolü eklendi.
+> Namespace yapısı düzenlenmiş, serialized field'ları `m_` prefix'i ile başlayan ve XML dokümantasyonları tam olan `IInteractable` ve `InteractionDetector` scriptleri sağlandı.
 
 **Nasıl Kullandım:**
 - [x] Direkt kullandım
 - [ ] Adapte ettim
-- [ ] Reddettim
 
 **Açıklama:**
-> Temel mimariyi firmaya özgü standartlara (Coding Conventions.md) uygun kurmak için destek aldım. Verilen kodda null check ve XML dokümantasyonları kurallara uygundu.
+> Şirket standartlarına (Coding Conventions.md) ilk seferde hatasız uyum sağlamak ve temiz bir mimari temel atmak için AI desteği aldım.
+
+---
 
 ## Prompt 2: Inventory ve Interactable Nesneler
 
 **Araç:** ChatGPT-4o
-**Tarih/Saat:** 2024-01-30 15:30
 
-**Prompt:**
-> Interaction System için 'Inventory' ve 'Door' mekaniklerini kodlamam gerekiyor. Ludu Arts standartlarına uygun olarak:
-> 1. Anahtarları tanımlamak için bir ScriptableObject (KeyItem).
-> 2. Bu anahtarları tutacak basit bir PlayerInventory scripti.
-> 3. IInteractable implement eden, kilitli/açık durumları olan bir Door scripti.
-> 4. Yerden toplanabilen bir KeyPickup scripti yazar mısın?
+**Prompt (Özet):**
+> Interaction System için 'Inventory' ve 'Door' mekaniklerini kodlamam gerekiyor.
+> 1. Anahtarları tanımlamak için ScriptableObject (KeyItem).
+> 2. Basit bir PlayerInventory scripti.
+> 3. Kilitli/Açık durumları olan bir Door scripti.
+> 4. Yerden toplanabilen KeyPickup scripti.
 
 **Alınan Cevap (Özet):**
-> ScriptableObject tabanlı bir item sistemi, m_CollectedKeys listesi tutan bir PlayerInventory ve IInteractable arayüzünü implement eden Door ile KeyPickup sınıfları oluşturuldu. Door sınıfı kilit kontrolü için envantere erişim mantığı içeriyor.
+> ScriptableObject tabanlı veri yapısı, List<KeyItem> tutan bir envanter sistemi ve `IInteractable` arayüzünü implement eden kapı/anahtar sınıfları oluşturuldu.
 
 **Nasıl Kullandım:**
 - [x] Direkt kullandım
 - [ ] Adapte ettim
-- [ ] Reddettim
 
 **Açıklama:**
-> Case gereksinimlerinde belirtilen "ScriptableObject ile item tanımları" maddesini karşılamak için veri odaklı bir yapı kurdum. Door scripti hem 'Toggle' hem 'Inventory Check' mantığını içeriyor.
+> Case gereksinimlerindeki "ScriptableObject ile item tanımları" maddesini karşılamak için veri odaklı bir yapı kurdum.
 
-## Prompt 3: Hold Interaction ve Refactoring
+---
+
+## Prompt 3: Oyuncu Hareketi (FPS Controller)
 
 **Araç:** ChatGPT-4o
-**Tarih/Saat:** 2024-01-30 16:15
 
-**Prompt:**
-> Core sistemi 'Hold' (Basılı tutma) mekaniğini destekleyecek şekilde güncellemek istiyorum.
-> 1. IInteractable arayüzüne InteractionType ve HoldDuration ekle.
-> 2. InteractionDetector scriptini Input.GetKey ile süreyi sayacak şekilde refactor et.
-> 3. Bir Chest (Sandık) scripti yaz: Belirli süre basılı tutunca açılsın ve kapak animasyonu oynasın.
-> Ludu Arts standartlarına (m_ prefix, region vb.) uymayı unutma.
+**Prompt (Özet):**
+> Sahnede hareket edebilmek için CharacterController kullanan, mouse look özelliği olan, Ludu Arts standartlarına uygun basit bir FirstPersonController scripti yazar mısın?
 
 **Alınan Cevap (Özet):**
-> IInteractable arayüzü Enum desteği ile güncellendi. InteractionDetector'a zamanlayıcı ve Progress Bar desteği eklendi. Chest sınıfı oluşturuldu ve diğer scriptler (Door, KeyPickup) yeni arayüze uyarlandı.
+> `Input.GetAxis` kullanan, kamera açısını clamp'leyen (sınırlayan) ve cursor kilitleme özelliği olan bir kontrolcü scripti sağlandı.
 
 **Nasıl Kullandım:**
-- [x] Direkt kullandım (Code adaptation required for existing classes)
-- [ ] Adapte ettim
-- [ ] Reddettim
+- [x] Adapte ettim (Unity Input System ayarlarını "Both" yaparak legacy input sorununu çözdüm)
 
 **Açıklama:**
-> Case'in "Must Have" gereksinimi olan farklı etkileşim türlerini desteklemek için sistemi modüler hale getirdim.
+> Odak noktam Interaction System olduğu için, hareket mekaniğini hızlıca halletmek adına hazır bir yapı istedim.
 
-## Prompt 4: Switch ve Event Sistemi
+---
+
+## Prompt 4: Hold Interaction ve Chest Mekaniği
 
 **Araç:** ChatGPT-4o
-**Tarih/Saat:** 2024-01-30 17:00
 
-**Prompt:**
-> "Switch" (Şalter) etkileşimi yapmak istiyorum. Bu şalter modüler olmalı, yani Inspector üzerinden herhangi bir objeyi (Kapıyı açma, Işığı yakma vb.) tetikleyebilmeli.
-> 1. UnityEvent kullanan bir Switch scripti yaz.
-> 2. Door scriptini bu şalter tarafından tetiklenebilecek (Public metod) hale getir.
+**Prompt (Özet):**
+> Core sistemi 'Hold' (Basılı tutma) mekaniğini destekleyecek şekilde refactor et:
+> 1. IInteractable'a InteractionType Enum'ı ekle.
+> 2. InteractionDetector'a zamanlayıcı ve Progress Bar UI desteği ekle.
+> 3. Belirli süre basılı tutunca açılan bir Chest (Sandık) scripti yaz.
 
 **Alınan Cevap (Özet):**
-> UnityEvent m_OnActivate ve m_OnDeactivate eventlerini içeren Switch sınıfı sağlandı. Door sınıfındaki ToggleDoor ve Unlock metodları public yapılarak dış erişime açıldı.
+> Interface güncellendi, Detector scriptine timer mantığı eklendi. Chest scripti için Slerp animasyonu içeren bir yapı sunuldu.
 
 **Nasıl Kullandım:**
 - [x] Direkt kullandım
 - [ ] Adapte ettim
-- [ ] Reddettim
 
 **Açıklama:**
-> Case'deki "Event-based connection" gereksinimi ve "Chained interactions" bonusunu kapsamak için UnityEvent yapısını tercih ettim.
+> Sistemin genişletilebilirliğini test etmek ve "Hold" gereksinimini karşılamak için tüm yapıyı (Interface dahil) güncellettirdim.
+
+---
+
+## Prompt 5: Event Sistemi ve Switch (Şalter)
+
+**Araç:** ChatGPT-4o
+
+**Prompt (Özet):**
+> Modüler bir "Switch" (Şalter) yapmak istiyorum. UnityEvent kullanarak Inspector üzerinden herhangi bir objeyi tetikleyebilsin. Door scriptini de buna uygun (Public metotlu) hale getir.
+
+**Alınan Cevap (Özet):**
+> `UnityEvent` kullanan Switch sınıfı yazıldı. Door sınıfındaki `ToggleDoor` ve `Unlock` metotları public yapılarak dış erişime açıldı.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+
+**Açıklama:**
+> Case'deki "Event-based connection" zorunluluğunu ve modülerlik beklentisini karşılamak için UnityEvent yapısını tercih ettim.
+
+---
+
+## Prompt 6: Debugging ve Polish (Hata Çözümleri)
+
+**Araç:** ChatGPT-4o
+
+**Prompt (Özet):**
+> - Kapı animasyonu çalışmıyor (Static hatası çözümü).
+> - Chest kapağı kendi etrafında dönüyor, yukarı kalkmıyor (Pivot/Hierarchy çözümü).
+> - Anahtarı almak zor oluyor (Hitbox büyütme önerisi).
+> - Prefab scale sorunları.
+
+**Alınan Cevap (Özet):**
+> Unity editöründe Parent-Child hiyerarşisi kurarak pivot noktası düzeltme, Collider boyutlarını büyütme ve "Static" flag'ini kaldırma gibi çözüm önerileri alındı.
+
+**Nasıl Kullandım:**
+- [x] Adapte ettim (Unity Editör üzerinde manuel uyguladım)
+
+**Açıklama:**
+> Kodun ötesinde, Unity Editör içindeki komponent ve hiyerarşi hatalarını tespit etmek için LLM'i bir "Pair Programmer" gibi kullandım. Özellikle Chest pivot sorununu kodla değil, hiyerarşi ile çözme önerisi zaman kazandırdı.
+
+---
+
+## Genel Değerlendirme
+
+### LLM'in En Çok Yardımcı Olduğu Alanlar
+1.  **Standartlara Uyum:** Ludu Arts'ın belirlediği `m_`, `k_` prefixleri ve XML dokümantasyon kurallarını manuel yazmak yerine AI'a uygulatarak büyük zaman kazandım.
+2.  **Refactoring:** Sistemi "Instant" etkileşimden "Hold" destekli yapıya geçirirken yapılan interface değişikliklerini tüm sınıflara (Door, Key, Chest) hızlıca uyguladı.
+3.  **Debugging:** Özellikle Inspector tarafındaki hataları (Script'in yanlış objede olması, Collider eksikliği) ekran görüntüleri ve belirtiler üzerinden tespit etmede çok etkili oldu.
+
+### LLM'in Yetersiz Kaldığı Alanlar
+1.  **Görsel Hiyerarşi:** Prefab pivot noktası ayarlamaları ve görsel scale sorunlarında kod yazmak yerine Unity Editör tarafında manuel müdahale gerekti. AI sadece yolu gösterdi, uygulamayı ben yaptım.
+
+### Sonuç
+LLM araçları, özellikle "Boilerplate" kod yazımında ve şirket standartlarına uyumda süreci çok hızlandırdı. Ancak Unity'nin Component yapısı ve Sahne hiyerarşisi konusundaki problemler yine manuel geliştirici yetkinliği ile çözüldü.
+
+---
