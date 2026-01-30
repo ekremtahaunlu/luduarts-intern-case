@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864153195d0d74b40924d4858fda3e70, type: 3}
   m_Name: Red Key
   m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Core.KeyItem
-  m_KeyName: 
+  m_KeyName: Red Key
