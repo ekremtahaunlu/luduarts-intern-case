@@ -27,6 +27,9 @@ namespace InteractionSystem.Runtime.Interactables
         private Quaternion m_ClosedRotation;
         private Quaternion m_TargetRotation;
 
+        public InteractionType InteractionType => InteractionType.Toggle;
+        public float HoldDuration => 0f;
+
         #endregion
 
         #region Unity Methods
@@ -117,7 +120,6 @@ namespace InteractionSystem.Runtime.Interactables
 
             if (m_IsOpen)
             {
-                // Mevcut rotasyon * Açılma açısı
                 m_TargetRotation = m_ClosedRotation * Quaternion.Euler(0, m_OpenAngle, 0);
             }
             else

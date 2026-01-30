@@ -2,13 +2,21 @@
 
 namespace InteractionSystem.Runtime.Core
 {
+    public enum InteractionType
+    {
+        Instant,
+        Hold,
+        Toggle
+    }
+
     public interface IInteractable
     {
-        /// <param name="interactor">Etkileşimi başlatan obje (Genelde Player).</param>
         void Interact(GameObject interactor);
-
-        /// <returns>Etkileşim mesajı (Örn: "Open Door").</returns>
         string GetInteractionPrompt();
         bool CanInteract { get; }
+
+        InteractionType InteractionType { get; }
+
+        float HoldDuration { get; }
     }
 }

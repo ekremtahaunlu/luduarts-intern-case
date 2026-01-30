@@ -11,6 +11,8 @@ namespace InteractionSystem.Runtime.Interactables
         [Header("Key Settings")]
         [SerializeField] private KeyItem m_KeyData;
 
+        public InteractionType InteractionType => InteractionType.Instant;
+        public float HoldDuration => 0f;
         #endregion
 
         #region IInteractable Implementation
