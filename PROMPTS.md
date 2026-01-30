@@ -62,3 +62,24 @@
 
 **Açıklama:**
 > Case'in "Must Have" gereksinimi olan farklı etkileşim türlerini desteklemek için sistemi modüler hale getirdim.
+
+## Prompt 4: Switch ve Event Sistemi
+
+**Araç:** ChatGPT-4o
+**Tarih/Saat:** 2024-01-30 17:00
+
+**Prompt:**
+> "Switch" (Şalter) etkileşimi yapmak istiyorum. Bu şalter modüler olmalı, yani Inspector üzerinden herhangi bir objeyi (Kapıyı açma, Işığı yakma vb.) tetikleyebilmeli.
+> 1. UnityEvent kullanan bir Switch scripti yaz.
+> 2. Door scriptini bu şalter tarafından tetiklenebilecek (Public metod) hale getir.
+
+**Alınan Cevap (Özet):**
+> UnityEvent m_OnActivate ve m_OnDeactivate eventlerini içeren Switch sınıfı sağlandı. Door sınıfındaki ToggleDoor ve Unlock metodları public yapılarak dış erişime açıldı.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Case'deki "Event-based connection" gereksinimi ve "Chained interactions" bonusunu kapsamak için UnityEvent yapısını tercih ettim.
