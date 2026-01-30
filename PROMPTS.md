@@ -39,3 +39,26 @@
 
 **Açıklama:**
 > Case gereksinimlerinde belirtilen "ScriptableObject ile item tanımları" maddesini karşılamak için veri odaklı bir yapı kurdum. Door scripti hem 'Toggle' hem 'Inventory Check' mantığını içeriyor.
+
+## Prompt 3: Hold Interaction ve Refactoring
+
+**Araç:** ChatGPT-4o
+**Tarih/Saat:** 2024-01-30 16:15
+
+**Prompt:**
+> Core sistemi 'Hold' (Basılı tutma) mekaniğini destekleyecek şekilde güncellemek istiyorum.
+> 1. IInteractable arayüzüne InteractionType ve HoldDuration ekle.
+> 2. InteractionDetector scriptini Input.GetKey ile süreyi sayacak şekilde refactor et.
+> 3. Bir Chest (Sandık) scripti yaz: Belirli süre basılı tutunca açılsın ve kapak animasyonu oynasın.
+> Ludu Arts standartlarına (m_ prefix, region vb.) uymayı unutma.
+
+**Alınan Cevap (Özet):**
+> IInteractable arayüzü Enum desteği ile güncellendi. InteractionDetector'a zamanlayıcı ve Progress Bar desteği eklendi. Chest sınıfı oluşturuldu ve diğer scriptler (Door, KeyPickup) yeni arayüze uyarlandı.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım (Code adaptation required for existing classes)
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Case'in "Must Have" gereksinimi olan farklı etkileşim türlerini desteklemek için sistemi modüler hale getirdim.
