@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5014592409443204729}
-  - component: {fileID: 2408009142872340896}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: P_Chest_Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,26 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2379366069359826988}
-  - {fileID: 93689632090208201}
+  - {fileID: 256829975755287806}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2408009142872340896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2912254563979531686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e10bb609aa01de4a8c307ea0d538798, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Interactables.Chest
-  m_HoldDuration: 2
-  m_PromptMessage: Open Chest
-  m_KeyToGive: {fileID: 11400000, guid: c49640dbb32c97d41b6b886df5b62fad, type: 2}
-  m_LidVisual: {fileID: 93689632090208201}
-  m_OpenAngle: -110
 --- !u!1 &6112692903373826012
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +45,7 @@ GameObject:
   - component: {fileID: 2762001934516093489}
   - component: {fileID: 5241214572248371139}
   - component: {fileID: 6949085251871726978}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Chest Cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,12 +60,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112692903373826012}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.0507, y: -0.0282, z: 0.049}
-  m_LocalScale: {x: 0.01, y: 0.1, z: 0.2}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.0013, y: -0.0273, z: 0}
+  m_LocalScale: {x: 0.009999999, y: 0.10000001, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5014592409443204729}
+  m_Father: {fileID: 256829975755287806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &2762001934516093489
 MeshFilter:
@@ -175,7 +157,8 @@ GameObject:
   - component: {fileID: 6650756259260420874}
   - component: {fileID: 2938449627958561618}
   - component: {fileID: 393017436812751073}
-  m_Layer: 0
+  - component: {fileID: 8032108730766422274}
+  m_Layer: 3
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 6263393529119473448}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05370009, y: -0.08161001, z: 0.048020005}
+  m_LocalPosition: {x: 0, y: -0.08161001, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -275,3 +258,52 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8032108730766422274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6263393529119473448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e10bb609aa01de4a8c307ea0d538798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Interactables.Chest
+  m_HoldDuration: 2
+  m_PromptMessage: Open Chest
+  m_KeyToGive: {fileID: 11400000, guid: c49640dbb32c97d41b6b886df5b62fad, type: 2}
+  m_LidVisual: {fileID: 256829975755287806}
+  m_OpenAngle: 120
+--- !u!1 &6564982541282329438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256829975755287806}
+  m_Layer: 0
+  m_Name: Lid_Hinge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &256829975755287806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564982541282329438}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0005, y: -0.0004, z: -0.005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 93689632090208201}
+  m_Father: {fileID: 5014592409443204729}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
