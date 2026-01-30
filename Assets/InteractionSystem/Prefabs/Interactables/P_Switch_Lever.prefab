@@ -274,9 +274,9 @@ MonoBehaviour:
   m_OnActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7111778145048875137, guid: 3fc280b099b697c4885b9442925a7b4e, type: 3}
         m_TargetAssemblyTypeName: InteractionSystem.Runtime.Interactables.Door, Assembly-CSharp
-        m_MethodName: Unlock
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
