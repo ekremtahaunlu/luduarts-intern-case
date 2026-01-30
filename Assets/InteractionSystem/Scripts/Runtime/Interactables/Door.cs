@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace InteractionSystem.Runtime.Interactables
 {
+    /// <summary>
+    /// Etkileşime geçildiğinde açılıp kapanabilen, kilitlenebilen ve uzaktan tetiklenebilen kapı sınıfı.
+    /// </summary>
     public class Door : MonoBehaviour, IInteractable
     {
         #region Fields
@@ -27,9 +30,6 @@ namespace InteractionSystem.Runtime.Interactables
         private Quaternion m_ClosedRotation;
         private Quaternion m_TargetRotation;
 
-        public InteractionType InteractionType => InteractionType.Toggle;
-        public float HoldDuration => 0f;
-
         #endregion
 
         #region Unity Methods
@@ -49,6 +49,7 @@ namespace InteractionSystem.Runtime.Interactables
 
         private void Update()
         {
+            // Basit animasyon (Slerp ile yumuşak geçiş)
             if (m_DoorVisual != null)
             {
                 m_DoorVisual.localRotation = Quaternion.Slerp(
@@ -63,6 +64,17 @@ namespace InteractionSystem.Runtime.Interactables
 
         #region IInteractable Implementation
 
+        // Kapı 'Toggle' (Aç/Kapa) tipindedir
+        public InteractionType InteractionType => InteractionType.Toggle;
+
+        // Basılı tutmaya gerek yok
+        public float HoldDuration => 0f;
+
+        public bool CanInteract => true;
+
+        /// <summary>
+        /// Kapı etkileşimi: Kilitli mi? Anahtar var mı? Aç/Kapa.
+        /// </summary>
         public void Interact(GameObject interactor)
         {
             if (m_IsLocked)
@@ -75,6 +87,9 @@ namespace InteractionSystem.Runtime.Interactables
             }
         }
 
+        /// <summary>
+        /// Duruma göre (Kilitli/Açık/Kapalı) kullanıcıya mesaj gösterir.
+        /// </summary>
         public string GetInteractionPrompt()
         {
             if (m_IsLocked)
@@ -86,12 +101,13 @@ namespace InteractionSystem.Runtime.Interactables
             return m_IsOpen ? "Close Door" : "Open Door";
         }
 
-        public bool CanInteract => true;
-
         #endregion
 
-        #region Private Methods
+        #region Methods
 
+        /// <summary>
+        /// Envanter kontrolü yaparak kapıyı açmayı dener.
+        /// </summary>
         private void TryUnlock(GameObject interactor)
         {
             var inventory = interactor.GetComponent<PlayerInventory>();
@@ -100,8 +116,9 @@ namespace InteractionSystem.Runtime.Interactables
             {
                 if (inventory.HasKey(m_RequiredKey))
                 {
-                    m_IsLocked = false;
-                    Debug.Log("Door unlocked!");
+                    Unlock();
+                    // Kilit açıldığında otomatik olarak kapıyı da açmak istersen:
+                    // ToggleDoor(); 
                 }
                 else
                 {
@@ -114,18 +131,33 @@ namespace InteractionSystem.Runtime.Interactables
             }
         }
 
-        private void ToggleDoor()
+        /// <summary>
+        /// Kapıyı dışarıdan (örn: Şalter ile veya Interact ile) açıp kapatmak için kullanılır.
+        /// Public olduğu için UnityEvent ile bağlanabilir.
+        /// </summary>
+        public void ToggleDoor()
         {
             m_IsOpen = !m_IsOpen;
 
             if (m_IsOpen)
             {
+                // Mevcut rotasyon * Açılma açısı
                 m_TargetRotation = m_ClosedRotation * Quaternion.Euler(0, m_OpenAngle, 0);
             }
             else
             {
                 m_TargetRotation = m_ClosedRotation;
             }
+        }
+
+        /// <summary>
+        /// Kapının kilidini dışarıdan açar (Anahtarsız).
+        /// Şalter veya özel eventler için kullanılır.
+        /// </summary>
+        public void Unlock()
+        {
+            m_IsLocked = false;
+            Debug.Log("Door unlocked!");
         }
 
         #endregion
