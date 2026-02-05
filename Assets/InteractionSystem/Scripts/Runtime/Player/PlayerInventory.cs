@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Text; // StringBuilder için gerekli
+using System.Text;
 using InteractionSystem.Runtime.Core;
 using UnityEngine;
-using TMPro; // TextMeshPro
+using TMPro;
 
 namespace InteractionSystem.Runtime.Player
 {
